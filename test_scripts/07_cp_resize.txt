@@ -1,0 +1,15 @@
+cp2fs testfile.txt a.txt
+cp2fs testfile.txt b.txt
+# now using two short spaces in fs
+
+rm a.txt
+# created short hole in fs
+
+# cp 2500 byte file to fs
+# which is bigger than short hole
+cp2fs bigger.txt c.txt
+
+# should succeed
+cp2l c.txt check.txt
+
+diff -qs check.txt bigger.txt

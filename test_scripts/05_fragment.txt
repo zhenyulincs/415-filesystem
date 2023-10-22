@@ -1,0 +1,13 @@
+cp2fs test.txt test1.txt
+cp2fs test.txt test2.txt
+rm test1.txt # make hole in free space map
+
+# attempts to write larger file
+# will start in hole, but will need to allocate new block
+cp bigger.txt test3.txt
+
+# expect no fault and test3.txt to be 2500 bytes,
+# found in 5 blocks at end of free space
+
+# test.txt made by cutting exactly 1250 bytes from source
+# bigger.txt made by cat test.txt test.txt > bigger.txt

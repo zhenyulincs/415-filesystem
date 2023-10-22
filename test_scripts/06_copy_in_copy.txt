@@ -1,0 +1,6 @@
+cp2fs test.txt inner.txt
+cp2l inner.txt outer.txt
+
+# then in host os can compare files with
+# should be identical (content and size not timestamps)
+diff -qs test.txt outer.txt
